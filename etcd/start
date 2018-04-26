@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+set -x
+
+set -a
+if test -e /etc/etcd/etcd.conf; then
+  source /etc/etcd/etcd.conf
+fi
+set +a
+
+env
+exec /usr/local/bin/etcd $ARGS

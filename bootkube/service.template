@@ -1,0 +1,18 @@
+[Unit]
+Description=Bootstrap a Kubernetes cluster
+Documentation=https://github.com/kubernetes-incubator/bootkube
+ConditionPathExists=!/var/lib/bootkube/init_bootkube.done
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStartPre=/bin/mkdir -p /var/lib/bootkube
+ExecStartPre=/usr/bin/bash -c "[ -n '$$(ls /var/lib/bootkube/assets/manifests-*/* 2>/dev/null)' ] && mv /var/lib/bootkube/assets/manifests-*/* /var/lib/bootkube/assets/manifests && rm -rf /var/lib/bootkube/assets/manifests-*"
+ExecStart=$EXEC_START
+ExecStartPost=/bin/touch /var/lib/bootkube/init_bootkube.done
+ExecStop=$EXEC_STOP
+
+WorkingDirectory=$DESTDIR
+
+[Install]
+WantedBy=multi-user.target

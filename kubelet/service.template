@@ -1,0 +1,14 @@
+[Unit]
+Description=Kubelet via Hyperkube
+Documentation=https://github.com/kubernetes/kubernetes
+
+[Service]
+ExecStart=$EXEC_START
+ExecStop=$EXEC_STOP
+Restart=always
+RestartSec=10s
+
+WorkingDirectory=$DESTDIR
+
+[Install]
+WantedBy=multi-user.target

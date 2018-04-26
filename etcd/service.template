@@ -1,0 +1,18 @@
+[Unit]
+Description=etcd system container
+Documentation=https://github.com/coreos/etcd
+Wants=network-online.target network.target
+After=network-online.target
+
+[Service]
+ExecStart=$EXEC_START
+ExecStop=$EXEC_STOP
+Restart=on-failure
+RestartSec=10s
+TimeoutStartSec=0
+LimitNOFILE=40000
+
+WorkingDirectory=$DESTDIR
+
+[Install]
+WantedBy=multi-user.target

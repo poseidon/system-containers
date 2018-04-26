@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -x
+
+CGROUP_FLAGS="--cgroup-driver=systemd --cgroups-per-qos=true --enforce-node-allocatable=pods"
+CONTAINERIZED="--containerized"
+
+# read custom FLAGS or ARGS
+if test -e /etc/kubernetes/kubelet.conf; then
+  source /etc/kubernetes/kubelet.conf
+fi
+
+if test -e /run/metadata/cloud; then
+  source /run/metadata/cloud
+fi
+
+HOSTNAME_OVERRIDE="${HOSTNAME_OVERRIDE:-$PRIVATE_IPV4}"
+
+env
+exec /hyperkube kubelet $CONTAINERIZED --hostname-override=$HOSTNAME_OVERRIDE $CGROUP_FLAGS $FLAGS $ARGS
