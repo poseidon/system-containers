@@ -1,5 +1,5 @@
 DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
-VERSION=v1.10.3
+VERSION=v1.10.4
 
 LOCAL_REPO=poseidon/kubelet
 IMAGE_REPO=quay.io/poseidon/kubelet
