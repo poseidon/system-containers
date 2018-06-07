@@ -1,7 +1,7 @@
-FROM quay.io/coreos/etcd:v3.3.5
+FROM quay.io/coreos/etcd:v3.3.6
 
 LABEL name="etcd" \
-  version="3.3.5" \
+  version="3.3.6" \
   release="0" \
   architecture="x86_v64" \
   atomic.type="system" \
