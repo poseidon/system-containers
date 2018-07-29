@@ -1,7 +1,7 @@
-FROM quay.io/coreos/bootkube:v0.12.0
+FROM quay.io/coreos/bootkube:v0.13.0
 
 LABEL name="bootkube" \
-  version="0.12.0" \
+  version="0.13.0" \
   release="0" \
   architecture="x86_v64" \
   atomic.type="system" \
