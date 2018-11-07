@@ -1,5 +1,5 @@
 DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
-VERSION=v0.13.0
+VERSION=v0.14.0
 
 LOCAL_REPO=poseidon/bootkube
 IMAGE_REPO=quay.io/poseidon/bootkube
