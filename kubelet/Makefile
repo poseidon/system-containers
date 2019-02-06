@@ -4,19 +4,17 @@ VERSION=v1.13.3
 LOCAL_REPO=poseidon/kubelet
 IMAGE_REPO=quay.io/poseidon/kubelet
 
-all: docker-image
+.PHONY: image
+image:
+	@buildah bud -t $(LOCAL_REPO):$(VERSION) .
+	@buildah tag $(LOCAL_REPO):$(VERSION) $(LOCAL_REPO):latest
 
-.PHONY: docker-image
-docker-image:
-	@sudo docker build --rm=true -t $(LOCAL_REPO):$(VERSION) .
-	@sudo docker tag $(LOCAL_REPO):$(VERSION) $(LOCAL_REPO):latest
-
-.PHONY: docker-push
-docker-push: docker-image
-	@sudo docker tag $(LOCAL_REPO):$(VERSION) $(IMAGE_REPO):latest
-	@sudo docker tag $(LOCAL_REPO):$(VERSION) $(IMAGE_REPO):$(VERSION)
-	@sudo docker push $(IMAGE_REPO):latest
-	@sudo docker push $(IMAGE_REPO):$(VERSION)
+.PHONY: push
+push:
+	@buildah tag $(LOCAL_REPO):$(VERSION) $(IMAGE_REPO):$(VERSION)
+	@buildah tag $(LOCAL_REPO):$(VERSION) $(IMAGE_REPO):latest
+	@buildah push docker://$(IMAGE_REPO):$(VERSION)
+	@buildah push docker://$(IMAGE_REPO):latest
 
 validate:
 	@jq . config.json.template
