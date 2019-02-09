@@ -1,5 +1,5 @@
 DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
-VERSION=v3.3.11
+VERSION=v3.3.12
 
 LOCAL_REPO=poseidon/etcd
 IMAGE_REPO=quay.io/poseidon/etcd
