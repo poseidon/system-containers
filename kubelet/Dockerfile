@@ -1,7 +1,7 @@
-FROM gcr.io/google_containers/hyperkube:v1.13.5
+FROM gcr.io/google_containers/hyperkube:v1.14.0
 
 LABEL name="kubelet" \
-  version="1.13.5" \
+  version="1.14.0" \
   release="0" \
   architecture="x86_v64" \
   atomic.type="system" \
